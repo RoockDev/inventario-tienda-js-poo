@@ -25,7 +25,7 @@ class Inventario {
   }
 
   calcularValorTotal() {
-    valorTotal = 0;
+    let valorTotal = 0;
     if (this.productos.length !== 0) {
       this.productos.forEach((producto) => {
         valorTotal += producto.precio * producto.cantidad;
@@ -33,5 +33,20 @@ class Inventario {
     }
 
     return valorTotal;
+  }
+
+  eliminarProducto(nombre){
+    //verificamos si hay algun producto en la lista con este nombre
+    const existe = this.productos.some(producto => producto.nombre === nombre);
+    if (!existe) {
+        console.log(`no hay ningun producto con el nombre ${nombre}`);
+    } else {
+        /**
+         * filtramos por productos con nombre distintos para eliminar
+         * me gusta mas hacer esto asi que con .remove etc...
+         */
+        this.productos = this.productos.filter(producto => producto.nombre !== nombre ); 
+        console.log(`producto/s con nombre:  ${nombre} eliminado/s`);
+    }
   }
 }
