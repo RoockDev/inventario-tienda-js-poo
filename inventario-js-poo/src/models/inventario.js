@@ -11,4 +11,15 @@ class Inventario{
         this.productos.push(producto);
         console.log(Producto); //se que esto no se hace, es para pruebas
     }
+
+    mostrarProductos(){
+        if (this.productos.length === 0) {
+            console.log('El inventario esta vacio');
+        }else{
+            this.productos.forEach(producto => {
+            console.log(`nombre: ${producto.nombre}, precio: ${producto.precio}, cantidad: ${producto.cantidad}`);
+        });
+        }
+        
+    }
 }
