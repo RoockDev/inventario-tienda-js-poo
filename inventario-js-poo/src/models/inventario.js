@@ -49,4 +49,16 @@ class Inventario {
         console.log(`producto/s con nombre:  ${nombre} eliminado/s`);
     }
   }
+
+  aplicarDescuento(descuento){
+    if (descuento<= 0 && descuento >= 100) {
+        console.log(' el descuento debe ser mayor que 0 y menor que 100');
+    }else{
+        this.productos.forEach(producto => {
+            producto.precio = producto.precio * (1-descuento / 100);
+        });
+    }
+
+    console.log(`se le aplica un descuento del ${descuento}%`);
+  }
 }
