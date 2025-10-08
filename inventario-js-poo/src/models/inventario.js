@@ -1,4 +1,6 @@
-class Inventario {
+import { Producto } from './producto.js';
+
+export class Inventario {
   constructor() {
     this.productos = [];
   }
@@ -9,7 +11,7 @@ class Inventario {
       return;
     }
     this.productos.push(producto);
-    console.log(Producto); //se que esto no se hace, es para pruebas
+    console.log(`producto añadido: ${producto.nombre}`); //se que esto no se hace, es para pruebas
   }
 
   mostrarProductos() {
@@ -18,7 +20,7 @@ class Inventario {
     } else {
       this.productos.forEach((producto) => {
         console.log(
-          `nombre: ${producto.nombre}, precio: ${producto.precio}, cantidad: ${producto.cantidad}`
+          `producto : nombre: ${producto.nombre}, precio: ${producto.precio}, cantidad: ${producto.cantidad}`
         );
       });
     }
