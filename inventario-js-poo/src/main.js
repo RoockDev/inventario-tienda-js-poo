@@ -1,24 +1,36 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { Producto } from "./models/producto";
+import { Inventario } from "./models/inventario";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+console.log('pruebas de inventario en tienda POO');
 
-setupCounter(document.querySelector('#counter'))
+//creamos inventario
+const inventario = new Inventario();
+
+//creamos productos
+const manzana = new Producto('Manzana', 1.2,10);
+const pan = new Producto('Pan', 0.8, 5);
+const leche = new Producto ('Leche', 1.5, 3);
+
+//agregamos productos
+inventario.agregarProducto(manzana);
+inventario.agregarProducto(pan)
+inventario.agregarProducto(leche);
+
+//mostramos productos
+inventario.mostrarProductos();
+
+//calculamos valor total
+const valorTotal = inventario.calcularValorTotal();
+console.log(`el valor total de los productos es ${valorTotal}`);
+
+//aplicamos descuentos
+inventario.aplicarDescuento(10);
+
+//eliminamos productos
+inventario.eliminarProducto('Manzana');
+
+//mostramos de nuevo
+inventario.mostrarProductos();
+
+// intentamos eliminar un producto que no existe
+inventario.eliminarProducto('galletas');
