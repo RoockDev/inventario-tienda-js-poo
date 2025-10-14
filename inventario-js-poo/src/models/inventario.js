@@ -3,6 +3,13 @@ import { Producto } from './producto.js';
 export class Inventario {
   constructor() {
     this.productos = [];
+    const productosGuardados = localStorage.getItem('productos');
+
+    if (productosGuardados) {
+      const productosArray = JSON.parse(productosGuardados);
+
+      this.productos = productosArray.map(producto => new Producto(producto.nombre,producto.precio,producto.cantidad));
+    }
   }
 
   agregarProducto(producto) {
@@ -11,6 +18,7 @@ export class Inventario {
       return;
     }
     this.productos.push(producto);
+    localStorage.setItem('productos', JSON.stringify(this.productos));
     console.log(`producto añadido: ${producto.nombre}`); //se que esto no se hace, es para pruebas
   }
 
@@ -48,6 +56,7 @@ export class Inventario {
          * me gusta mas hacer esto asi que con .remove etc...
          */
         this.productos = this.productos.filter(producto => producto.nombre !== nombre ); 
+        localStorage.setItem('productos',JSON.stringify(this.productos));
         console.log(`producto/s con nombre:  ${nombre} eliminado/s`);
     }
   }
@@ -59,6 +68,7 @@ export class Inventario {
         this.productos.forEach(producto => {
             producto.precio = producto.precio * (1-descuento / 100);
         });
+        localStorage.setItem('productos',JSON.stringify(this.productos));
     }
 
     console.log(`se le aplica un descuento del ${descuento}%`);
